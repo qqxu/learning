@@ -1,0 +1,89 @@
+<!-- 固定宽度，两列布局 -->
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="./css/styles.css">
+</head>
+<body>
+	<div class="mainDiv">
+
+	</div>
+	<script type="text/javascript">
+	/*判断一个数字是否是质数：
+	质数（prime number）又称素数，有无限个。除了1和它本身以外不再被其他的除数整除。*/
+		function isPrime(number){
+			if (typeof number!=='number'||!Number.isInteger(number))
+			 {
+			 	return false;
+			 };
+			 if (number<2) {return false};
+			 if (number===2) {
+			 	return true
+			 }else if(number%2===0){
+			 	return false;
+			 };
+			 var squareRoot=Math.sqrt(number);
+			 for(var i=3;i<=squareRoot;i+=2){
+			 	if (number%i===0) {
+			 		return false;
+			 	};
+			 }
+			 return true;
+		}
+		
+		/*给任意一个偶数，找出他的所有的质数因子*/
+		function primeFactor(n){
+			var factors=[],
+				divistor=2;
+			if(typeof n !=='number'||!Number.isInteger(n)){
+				return 0;
+			};
+			if(n%2!==0||n===0){return 0;}
+			while(n>=2){
+				if(n%divistor===0){
+					factors.push(divistor);
+					n=n/divistor;
+				}else{
+					divistor++;
+				}
+			}
+			return factors;
+		}
+		/*给定一个数，如何求Fibonacci值：：F（0）=0，F（1）=1，F（n）=F(n-1)+F(n-2)（n≥2）*/
+		
+		function fibonacci(n){
+			if(n<2){
+				return n;
+			}
+			return fibonacci(n-1)+fibonacci(n-2);
+		}
+		/*找出两个数的最大公约数*/
+		/*比如说有要求a、b两个整数的最大公约数，a＞b，那么我们先用a除以b，得到商8，余数r1：a÷b＝q1…r1我们当然也可以把上面这个式子改写成乘法式：a＝b*q1＋r1------l）如果r1＝0，那么b就是a、b的最大公约数。要是r1≠0，就继续除，用b除以r1，我们也可以有和上面一样的式子：b＝r1*q2＋r2------如果余数r2＝0，那么r1就是所求的最大公约数。*/
+		function getBigFactor(a,b){
+			if(b==0){
+				return a;
+			}
+			return getBigFactor(b,a%b)
+		}
+
+		/*数组去重*/
+		function duplicateArr(Arr){
+			var exists={},
+			     result=[];
+			var elem;
+			for (var i = 0;i <= Arr.length; i++) {
+				elem=Arr[i]
+				if(!exists[elem]){
+					result.push(elem);
+					exists[elem]=true;
+				}
+				
+			};
+			return result;
+		}
+		alert(duplicateArr([2,34,5,2,5,6]));
+
+	</script>
+	
+</body>
+</html>
